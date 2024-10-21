@@ -24,7 +24,7 @@ export function BugDetails() {
     return bug && <div>
         <h3>Bug Details 🐛</h3>
         <h4>{bug.title}</h4>
-        <h5>{bug.description}</h5>
+        <h4 >{bug.description || 'No description available'}</h4>
         <p>Severity: <span>{bug.severity}</span></p>
         <Link to="/bug">Back to List</Link>
     </div>

@@ -22,7 +22,7 @@ app.use(express.static('public'))
 //     else res.status(404).send('Bug not found')
 // })
 
-
+//* READ LIST
 app.get('/api/bug', (req, res) => {
     bugService.query()
         .then(bugs => res.send(bugs))
@@ -32,14 +32,17 @@ app.get('/api/bug', (req, res) => {
         })
 })
 
+//* SAVE
 app.get('/api/bug/save', (req, res) => {
     const bugToSave = {
         _id: req.query._id,
         title: req.query.title,
         description: req.query.description,
         severity: req.query.severity,
-        createdAy: Date.now()
+        createdAt: Date.now()
     }
+
+    console.log('Saving bug:', bugToSave)
 
     bugService.save(bugToSave)
         .then(savedBug => res.send(savedBug))
@@ -49,6 +52,7 @@ app.get('/api/bug/save', (req, res) => {
         })
 })
 
+//* READ
 app.get('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
     bugService.getById(bugId)
@@ -59,6 +63,7 @@ app.get('/api/bug/:bugId', (req, res) => {
         })
 })
 
+//* REMOVE
 app.get('/api/bug/:bugId/remove', (req, res) => {
     const { bugId } = req.params
     bugService.remove(bugId)
