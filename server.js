@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser'
 
 import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
+import { pdfService } from './services/pdf.service.js'
 
 const app = express()
 app.use(express.static('public'))
@@ -53,6 +54,18 @@ app.get('/api/bug/save', (req, res) => {
         })
 })
 
+app.get('/api/bug/downloadPDF', (req, res) => {
+    bugService.query()
+        .then(bugs => {
+            pdfService.buildBugsPDF(bugs)
+            console.log('success: PDF created.')
+        })
+        .catch(err => {
+            loggerService.error('Cannot get bugs', err)
+            res.status(500).send('Cannot get bugs')
+        })
+})
+
 //* READ
 app.get('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
@@ -86,6 +99,7 @@ app.get('/api/bug/:bugId/remove', (req, res) => {
             res.status(500).send('Cannot remove bug')
         })
 })
+
 
 //* Cookies
 // app.get('/api/bug/:bugId', (req, res) => {

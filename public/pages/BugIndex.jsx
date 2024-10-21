@@ -87,6 +87,7 @@ export function BugIndex() {
             <main>
                 <BugFilter filterBy={filterBy} onSetFilter={onSetFilter} />
                 <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
+                <button type='button' onClick={() => bugService.getPDF()}>Download PDF</button>
             </main>
         </main>
     )

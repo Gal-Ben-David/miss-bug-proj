@@ -11,7 +11,8 @@ export const bugService = {
     getById,
     save,
     remove,
-    getDefaultFilter
+    getDefaultFilter,
+    getPDF
 }
 
 
@@ -48,6 +49,14 @@ function save(bug) {
 
 function getDefaultFilter() {
     return { title: '', severity: '' }
+}
+
+function getPDF() {
+    return axios.get(BASE_URL + 'downloadPDF')
+        .then(res => res.data)
+        .then(() => {
+            console.log('PDF!')
+        })
 }
 
 function _createBugs() {
