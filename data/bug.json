@@ -17,7 +17,7 @@
         "_id": "abc456",
         "title": "Bug id abc456",
         "description": "102",
-        "severity": 3,
+        "severity": 5,
         "createdAt": 1542107359455
     },
     {
@@ -31,14 +31,14 @@
         "_id": "abc357",
         "title": "Bug id abc357",
         "description": "104",
-        "severity": 3,
+        "severity": 2,
         "createdAt": 1542107359457
     },
     {
         "_id": "abc246",
         "title": "Bug id abc246",
         "description": "105",
-        "severity": 3,
+        "severity": 1,
         "createdAt": 1542107359454
     }
 ]
