@@ -6,6 +6,7 @@ import { loggerService } from './services/logger.service.js'
 
 const app = express()
 app.use(express.static('public'))
+app.use(cookieParser())
 // const bugs = JSON.parse(fs.readFileSync('data/bug.json', 'utf8'))
 
 // app.get('/', (req, res) => res.send('Hello there'))
@@ -55,6 +56,18 @@ app.get('/api/bug/save', (req, res) => {
 //* READ
 app.get('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
+    let visitedBugs = req.cookies.visitedBugs || []
+
+    if (!visitedBugs.includes(decodeURIComponent(bugId))) {
+        visitedBugs.push(decodeURIComponent(bugId))
+    }
+    if (visitedBugs.length > 3) {
+        console.log('You have reached the maximum number of viewings')
+        return res.status(401).send('Wait for a bit')
+    }
+    res.cookie('visitedBugs', visitedBugs, { maxAge: 7000 })
+    console.log('User visited at the following bugs:', visitedBugs)
+
     bugService.getById(bugId)
         .then(bug => res.send(bug))
         .catch(err => {
@@ -73,5 +86,11 @@ app.get('/api/bug/:bugId/remove', (req, res) => {
             res.status(500).send('Cannot remove bug')
         })
 })
+
+//* Cookies
+// app.get('/api/bug/:bugId', (req, res) => {
+
+//     res.end()
+// })
 
 app.listen(3030, () => console.log(`Server listening on port http://127.0.0.1:3030/`))
