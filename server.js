@@ -5,6 +5,7 @@ import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
 
 const app = express()
+app.use(express.static('public'))
 // const bugs = JSON.parse(fs.readFileSync('data/bug.json', 'utf8'))
 
 // app.get('/', (req, res) => res.send('Hello there'))
@@ -35,6 +36,7 @@ app.get('/api/bug/save', (req, res) => {
     const bugToSave = {
         _id: req.query._id,
         title: req.query.title,
+        description: req.query.description,
         severity: req.query.severity,
         createdAy: Date.now()
     }
