@@ -1,19 +1,5 @@
 [
     {
-        "_id": "l0Ren",
-        "title": "bug-6",
-        "description": "simethings",
-        "severity": "9",
-        "createdAt": 1729533632176
-    },
-    {
-        "_id": "abc123",
-        "title": "Bug id abc123",
-        "description": "101",
-        "severity": 3,
-        "createdAt": 1542107359454
-    },
-    {
         "_id": "abc456",
         "title": "Bug id abc456",
         "description": "102",
@@ -31,8 +17,8 @@
         "_id": "abc357",
         "title": "Bug id abc357",
         "description": "104",
-        "severity": 2,
-        "createdAt": 1542107359457
+        "severity": 6,
+        "createdAt": 1729595174886
     },
     {
         "_id": "abc246",
