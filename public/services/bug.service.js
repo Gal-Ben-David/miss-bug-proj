@@ -4,31 +4,31 @@ import { utilService } from './util.service.js'
 const STORAGE_KEY = 'bugDB'
 const BASE_URL = '/api/bug/'
 
-// _createBugs()
-
 export const bugService = {
     query,
     getById,
     save,
     remove,
     getDefaultFilter,
+    getEmptyBug,
+    getFilterFromParams,
     getPDF
 }
 
 
-function query(filterBy = {}) {
-    return axios.get(BASE_URL)
+function query(filterBy = getDefaultFilter()) {
+    return axios.get(BASE_URL, { params: filterBy })
         .then(res => res.data)
-        .then(bugs => {
-            if (filterBy.title) {
-                const regExp = new RegExp(filterBy.title, 'i')
-                bugs = bugs.filter(bug => regExp.test(bug.title))
-            }
-            if (filterBy.severity) {
-                bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
-            }
-            return bugs
-        })
+    //         .then(bugs => {
+    //             if (filterBy.title) {
+    //                 const regExp = new RegExp(filterBy.title, 'i')
+    //                 bugs = bugs.filter(bug => regExp.test(bug.title))
+    //             }
+    //             if (filterBy.severity) {
+    //                 bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
+    //             }
+    //             return bugs
+    //         })
 }
 function getById(bugId) {
     return axios.get(BASE_URL + bugId)
@@ -42,14 +42,33 @@ function remove(bugId) {
 }
 
 function save(bug) {
-    const url = BASE_URL + 'save'
-    let queryParams = `?title=${bug.title}&description=${bug.description}&severity=${bug.severity}`
-    if (bug._id) queryParams += `&_id=${bug._id}`
-    return axios.get(url + queryParams).then(res => res.data)
+    // const url = BASE_URL + 'save'
+    // let queryParams = `?title=${bug.title}&description=${bug.description}&severity=${bug.severity}`
+    // if (bug._id) queryParams += `&_id=${bug._id}`
+    // return axios.get(url + queryParams).then(res => res.data)
+
+    if (bug._id) {
+        return axios.put(BASE_URL, bug).then(res => res.data)
+    } else {
+        return axios.post(BASE_URL, bug).then(res => res.data)
+    }
+}
+
+function getEmptyBug(title = '', description = '', severity = 0) {
+    return { title, description, severity }
 }
 
 function getDefaultFilter() {
     return { title: '', severity: '' }
+}
+
+function getFilterFromParams(searchParams = {}) {
+    const defaultFilter = getDefaultFilter()
+    return {
+        title: searchParams.get('title') || defaultFilter.title,
+        description: searchParams.get('description') || defaultFilter.description,
+        severity: searchParams.get('severity') || defaultFilter.severity
+    }
 }
 
 function getPDF() {
@@ -58,39 +77,6 @@ function getPDF() {
         .then(() => {
             console.log('PDF!')
         })
-}
-
-function _createBugs() {
-    let bugs = utilService.loadFromStorage(STORAGE_KEY)
-    if (!bugs || !bugs.length) {
-        bugs = [
-            {
-                title: "Infinite Loop Detected",
-                description: 'Bug #1NF1N1T3',
-                severity: 4,
-                _id: "1NF1N1T3"
-            },
-            {
-                title: "Keyboard Not Found",
-                description: 'Bug #K3YB0RD',
-                severity: 3,
-                _id: "K3YB0RD"
-            },
-            {
-                title: "404 Coffee Not Found",
-                description: 'Bug #C0FF33',
-                severity: 2,
-                _id: "C0FF33"
-            },
-            {
-                title: "Unexpected Response",
-                description: 'Bug #G0053',
-                severity: 1,
-                _id: "G0053"
-            }
-        ]
-        utilService.saveToStorage(STORAGE_KEY, bugs)
-    }
 }
 
 function _setNextPrevBugId(bug) {

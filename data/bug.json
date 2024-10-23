@@ -4,27 +4,44 @@
         "title": "Bug id abc456",
         "description": "102",
         "severity": 5,
-        "createdAt": 1542107359455
+        "createdAt": 1542107359455,
+        "labels": [
+            "critical",
+            "need-CR",
+            "dev-branch"
+        ]
     },
     {
         "_id": "abc789",
         "title": "Bug id abc789",
         "description": "103",
         "severity": 3,
-        "createdAt": 1542107359456
+        "createdAt": 1542107359456,
+        "labels": [
+            "critical",
+            "dev-branch"
+        ]
     },
     {
         "_id": "abc357",
         "title": "Bug id abc357",
         "description": "104",
         "severity": 6,
-        "createdAt": 1729595174886
+        "createdAt": 1729595174886,
+        "labels": [
+            "need-CR",
+            "dev-branch"
+        ]
     },
     {
         "_id": "abc246",
         "title": "Bug id abc246",
         "description": "105",
         "severity": 1,
-        "createdAt": 1542107359454
+        "createdAt": 1542107359454,
+        "labels": [
+            "critical",
+            "need-CR"
+        ]
     }
 ]

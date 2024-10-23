@@ -3,3 +3,8 @@
 21.10.2024, 23:41:05 - ERROR - Cannot get bug | Cannot find bug
 21.10.2024, 23:42:46 - ERROR - Cannot get cars | ReferenceError: pdfPath is not defined
 22.10.2024, 15:26:28 - ERROR - Cannot remove bug | Cannot find bug
+23.10.2024, 16:08:21 - ERROR - Cannot get bugs | ReferenceError: filterBy is not defined
+23.10.2024, 16:08:45 - ERROR - Cannot get bugs | ReferenceError: filterBy is not defined
+23.10.2024, 16:09:09 - ERROR - Cannot get bugs | ReferenceError: filterBy is not defined
+23.10.2024, 16:09:20 - ERROR - Cannot get bugs | ReferenceError: filterBy is not defined
+23.10.2024, 16:09:53 - ERROR - Cannot get bugs | ReferenceError: filterBy is not defined

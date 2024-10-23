@@ -10,8 +10,19 @@ export const bugService = {
     save
 }
 
-function query() {
+function query(filterBy) {
     return Promise.resolve(bugs)
+        .then(bugs => {
+            if (filterBy.title) {
+                const regex = new RegExp(filterBy.title, 'i')
+                bugs = bugs.filter(bug => regex.test(bug.title))
+            }
+            if (filterBy.severity) {
+                bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
+            }
+
+            return bugs
+        })
 }
 
 function getById(bugId) {
@@ -30,7 +41,7 @@ function remove(bugId) {
 function save(bugToSave) {
     if (bugToSave._id) {
         const bugIdx = bugs.findIndex(bug => bug._id === bugToSave._id)
-        bugs[bugIdx] = bugToSave
+        bugs[bugIdx] = { ...bugs[carIdx], ...bugToSave }
     } else {
         bugToSave._id = utilService.makeId()
         bugs.unshift(bugToSave)

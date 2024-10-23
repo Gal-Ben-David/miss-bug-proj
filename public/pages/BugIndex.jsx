@@ -3,13 +3,16 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { BugList } from '../cmps/BugList.jsx'
 import { BugFilter } from '../cmps/BugFilter.jsx'
 
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
+const { Link, useSearchParams } = ReactRouterDOM
 
 export function BugIndex() {
+    const [searchParams, setSearchParams] = useSearchParams()
     const [bugs, setBugs] = useState(null)
-    const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
+    const [filterBy, setFilterBy] = useState(bugService.getFilterFromParams(searchParams))
 
     useEffect(() => {
+        setSearchParams(filterBy)
         loadBugs()
     }, [filterBy])
 
