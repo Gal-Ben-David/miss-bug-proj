@@ -61,7 +61,7 @@ function getEmptyBug(title = '', severity = 0, label = '') {
 }
 
 function getDefaultFilter() {
-    return { title: '', severity: 0, label: '' }
+    return { title: '', severity: 0, label: '', pageIdx: 0 }
 }
 
 function getDefaultSort() {
@@ -74,6 +74,7 @@ function getFilterFromParams(searchParams = {}) {
         title: searchParams.get('title') || defaultFilter.title,
         severity: searchParams.get('severity') || defaultFilter.severity,
         label: searchParams.get('label') || defaultFilter.label,
+        pageIdx: +searchParams.get('pageIdx') || defaultFilter.pageIdx
     }
 }
 

@@ -2,6 +2,7 @@ import fs from 'fs'
 import { utilService } from './util.service.js'
 
 const bugs = utilService.readJsonFile('data/bug.json')
+const PAGE_SIZE = 3
 
 export const bugService = {
     query,
@@ -31,6 +32,11 @@ function query(filterBy, sortBy) {
             }
             if (sortBy.selector === 'createdAt') {
                 bugs.sort((bug1, bug2) => (bug1.createdAt - bug2.createdAt) * sortBy.dir)
+            }
+            if (filterBy.pageIdx !== undefined) {
+
+                const startIdx = +filterBy.pageIdx * PAGE_SIZE // 0,3,6
+                bugs = bugs.slice(startIdx, startIdx + PAGE_SIZE)
             }
             return bugs
         })

@@ -27,12 +27,25 @@ export function BugIndex() {
     }
 
     function onSetFilter(filterBy) {
+        console.log(filterBy)
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
     function onSetSort(sortBy) {
         console.log(sortBy)
         setSortBy(prevSort => ({ ...prevSort, ...sortBy }))
+    }
+
+    function onChangePage(diff) {
+        if (filterBy.pageIdx === undefined) return
+
+        setFilterBy(prevFilter => {
+
+            let nextPageIdx = +prevFilter.pageIdx + diff
+            if (nextPageIdx < 0) nextPageIdx = 0
+
+            return { ...prevFilter, pageIdx: nextPageIdx }
+        })
     }
 
     function onRemoveBug(bugId) {
@@ -98,6 +111,12 @@ export function BugIndex() {
                 <BugFilter filterBy={filterBy} onSetFilter={onSetFilter} />
                 <BugSort sortBy={sortBy} onSetSort={onSetSort} />
                 <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
+                <section>
+                    <button onClick={() => onChangePage(-1)}>-</button>
+                    {filterBy.pageIdx + 1}
+                    <button onClick={() => onChangePage(1)}>+</button>
+                </section>
+
                 <button type='button' onClick={() => bugService.getPDF()}>Download PDF</button>
             </main>
         </main>

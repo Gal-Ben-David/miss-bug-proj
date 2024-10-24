@@ -30,12 +30,13 @@ app.get('/api/bug', (req, res) => {
 
     console.log('req.query:', req.query)
 
-    const { title = '', description = '', severity = '0', selector = '', dir = '1' } = req.query
+    const { title = '', description = '', severity = '0', selector = '', dir = '1', pageIdx = '0' } = req.query
 
     const filterBy = {
         title,
         description,
         severity: +severity,
+        pageIdx: +pageIdx
     }
 
     const sortBy = {
