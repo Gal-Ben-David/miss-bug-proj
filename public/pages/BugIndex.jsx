@@ -27,12 +27,10 @@ export function BugIndex() {
     }
 
     function onSetFilter(filterBy) {
-        console.log(filterBy)
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
     function onSetSort(sortBy) {
-        console.log(sortBy)
         setSortBy(prevSort => ({ ...prevSort, ...sortBy }))
     }
 

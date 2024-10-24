@@ -1,0 +1,55 @@
+.bug-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: end;
+}
+
+.bug-preview {
+    display: grid;
+    justify-content: center;
+    background-color: whitesmoke;
+    color: #444;
+    border-radius: 0.5em;
+    margin: 5px;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    font-family: Mukta-Light;
+}
+
+.bug-preview h4 {
+    font-family: Mukta-Regular;
+}
+
+.bug-img {
+    width: 2.1em;
+    justify-self: center;
+}
+
+.bug-img img {
+    width: 100%;
+    margin: 0;
+}
+
+.preview-info {
+    display: grid;
+    justify-content: center;
+}
+
+.bug-preview a {
+    color: lightskyblue;
+}
+
+.bug-preview span {
+    color: blue;
+}
+
+.info-actions {}
+
+.container {
+    padding-inline: 8rem;
+}

@@ -1,6 +1,7 @@
 body {
     margin: auto;
     font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 
@@ -75,38 +76,4 @@ nav a:hover {
 
 .danger {
     background-color: rgb(216, 59, 59);
-}
-
-
-.bug-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    justify-items: end;
-}
-
-.bug-preview {
-    background-color: #333;
-    color: whitesmoke;
-    border-radius: .2em;
-    margin: 5px;
-    text-align: center;
-    padding: 5px;
-}
-
-.bug-preview a {
-    color: lightskyblue;
-}
-
-.bug-preview span {
-    color: gold;
-}
-
-.info-actions {
-}
-
-.container {
-    padding-inline: 8rem;
 }
