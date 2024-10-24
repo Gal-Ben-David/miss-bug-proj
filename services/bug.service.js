@@ -10,7 +10,7 @@ export const bugService = {
     save
 }
 
-function query(filterBy) {
+function query(filterBy, sortBy) {
     return Promise.resolve(bugs)
         .then(bugs => {
             if (filterBy.title) {
@@ -20,7 +20,18 @@ function query(filterBy) {
             if (filterBy.severity) {
                 bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
             }
-
+            if (filterBy.label) {
+                bugs = bugs.filter(bug => bug.labels.includes(filterBy.label))
+            }
+            if (sortBy.selector === 'bugTitle') {
+                bugs.sort((bug1, bug2) => bug1.title.toLowerCase().localeCompare(bug2.title.toLowerCase()) * sortBy.dir)
+            }
+            if (sortBy.selector === 'severity') {
+                bugs.sort((bug1, bug2) => (bug1.severity - bug2.severity) * sortBy.dir)
+            }
+            if (sortBy.selector === 'createdAt') {
+                bugs.sort((bug1, bug2) => (bug1.createdAt - bug2.createdAt) * sortBy.dir)
+            }
             return bugs
         })
 }

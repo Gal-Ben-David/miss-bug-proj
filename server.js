@@ -30,7 +30,7 @@ app.get('/api/bug', (req, res) => {
 
     console.log('req.query:', req.query)
 
-    const { title = '', description = '', severity = '0' } = req.query
+    const { title = '', description = '', severity = '0', selector = '', dir = '1' } = req.query
 
     const filterBy = {
         title,
@@ -38,7 +38,12 @@ app.get('/api/bug', (req, res) => {
         severity: +severity,
     }
 
-    bugService.query(filterBy)
+    const sortBy = {
+        selector,
+        dir: +dir
+    }
+
+    bugService.query(filterBy, sortBy)
         .then(bugs => res.send(bugs))
         .catch(err => {
             loggerService.error('Cannot get bugs', err)
@@ -46,13 +51,13 @@ app.get('/api/bug', (req, res) => {
         })
 })
 
-//* SAVE
+//* ADD
 app.post('/api/bug', (req, res) => {
     const bugToSave = {
-        _id: req.body._id,
         title: req.body.title,
         description: req.body.description,
         severity: +req.body.severity,
+        labels: req.body.labels,
         createdAt: Date.now()
     }
 
@@ -80,6 +85,7 @@ app.put('/api/bug', (req, res) => {
         })
 })
 
+//*DOWNLOAD PDF
 app.get('/api/bug/downloadPDF', (req, res) => {
     bugService.query()
         .then(bugs => {

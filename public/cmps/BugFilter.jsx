@@ -41,7 +41,7 @@ export function BugFilter({ filterBy, onSetFilter }) {
 
     return (
         <section className="car-filter">
-            <h2>Filter Our Cars</h2>
+            <h2>Filter Our Bugs</h2>
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt">Title</label>
                 <input value={title} onChange={handleChange} name="title" type="text" id="txt" />

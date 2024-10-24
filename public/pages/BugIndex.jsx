@@ -2,6 +2,7 @@ import { bugService } from '../services/bug.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { BugList } from '../cmps/BugList.jsx'
 import { BugFilter } from '../cmps/BugFilter.jsx'
+import { BugSort } from '../cmps/BugSort.jsx'
 
 const { useState, useEffect, useRef } = React
 const { Link, useSearchParams } = ReactRouterDOM
@@ -10,14 +11,15 @@ export function BugIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [bugs, setBugs] = useState(null)
     const [filterBy, setFilterBy] = useState(bugService.getFilterFromParams(searchParams))
+    const [sortBy, setSortBy] = useState(bugService.getSortFromParams(searchParams))
 
     useEffect(() => {
-        setSearchParams(filterBy)
+        setSearchParams({ ...filterBy, ...sortBy })
         loadBugs()
-    }, [filterBy])
+    }, [filterBy, sortBy])
 
     function loadBugs() {
-        bugService.query(filterBy)
+        bugService.query(filterBy, sortBy)
             .then(setBugs)
             .catch(err => {
                 console.log('err:', err)
@@ -28,11 +30,16 @@ export function BugIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function onSetSort(sortBy) {
+        console.log(sortBy)
+        setSortBy(prevSort => ({ ...prevSort, ...sortBy }))
+    }
+
     function onRemoveBug(bugId) {
         bugService
             .remove(bugId)
             .then(() => {
-                console.log('Deleted Succesfully!')
+                console.log('Deleted Successfully!')
                 const bugsToUpdate = bugs.filter((bug) => bug._id !== bugId)
                 setBugs(bugsToUpdate)
                 showSuccessMsg('Bug removed')
@@ -89,6 +96,7 @@ export function BugIndex() {
             </section>
             <main>
                 <BugFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+                <BugSort sortBy={sortBy} onSetSort={onSetSort} />
                 <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
                 <button type='button' onClick={() => bugService.getPDF()}>Download PDF</button>
             </main>

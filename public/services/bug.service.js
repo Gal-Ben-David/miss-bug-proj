@@ -12,12 +12,14 @@ export const bugService = {
     getDefaultFilter,
     getEmptyBug,
     getFilterFromParams,
+    getSortFromParams,
+    getDefaultSort,
     getPDF
 }
 
 
-function query(filterBy = getDefaultFilter()) {
-    return axios.get(BASE_URL, { params: filterBy })
+function query(filterBy = getDefaultFilter(), sortBy = getDefaultSort()) {
+    return axios.get(BASE_URL, { params: { ...filterBy, ...sortBy } })
         .then(res => res.data)
     //         .then(bugs => {
     //             if (filterBy.title) {
@@ -54,20 +56,32 @@ function save(bug) {
     }
 }
 
-function getEmptyBug(title = '', description = '', severity = 0) {
-    return { title, description, severity }
+function getEmptyBug(title = '', severity = 0, label = '') {
+    return { title, severity, label }
 }
 
 function getDefaultFilter() {
-    return { title: '', severity: '' }
+    return { title: '', severity: 0, label: '' }
+}
+
+function getDefaultSort() {
+    return { selector: '', dir: 1 }
 }
 
 function getFilterFromParams(searchParams = {}) {
     const defaultFilter = getDefaultFilter()
     return {
         title: searchParams.get('title') || defaultFilter.title,
-        description: searchParams.get('description') || defaultFilter.description,
-        severity: searchParams.get('severity') || defaultFilter.severity
+        severity: searchParams.get('severity') || defaultFilter.severity,
+        label: searchParams.get('label') || defaultFilter.label,
+    }
+}
+
+function getSortFromParams(searchParams = {}) {
+    const defaultSort = getDefaultSort()
+    return {
+        selector: searchParams.get('selector') || defaultSort.selector,
+        dir: +searchParams.get('dir') || defaultSort.dir
     }
 }
 

@@ -8,3 +8,9 @@
 23.10.2024, 16:09:09 - ERROR - Cannot get bugs | ReferenceError: filterBy is not defined
 23.10.2024, 16:09:20 - ERROR - Cannot get bugs | ReferenceError: filterBy is not defined
 23.10.2024, 16:09:53 - ERROR - Cannot get bugs | ReferenceError: filterBy is not defined
+24.10.2024, 10:39:46 - ERROR - Cannot get bugs | TypeError: Cannot read properties of undefined (reading 'selector')
+24.10.2024, 10:39:46 - ERROR - Cannot get bugs | TypeError: Cannot read properties of undefined (reading 'selector')
+24.10.2024, 10:39:47 - ERROR - Cannot get bugs | TypeError: Cannot read properties of undefined (reading 'selector')
+24.10.2024, 12:02:08 - ERROR - Cannot get bugs | ReferenceError: dir is not defined
+24.10.2024, 12:02:08 - ERROR - Cannot get bugs | ReferenceError: dir is not defined
+24.10.2024, 12:02:09 - ERROR - Cannot get bugs | ReferenceError: dir is not defined
