@@ -56,7 +56,7 @@ function save(bug) {
     }
 }
 
-function getEmptyBug(title = '', severity = 0, label = '') {
+function getEmptyBug(title = '', severity = 0, label = []) {
     return { title, severity, label }
 }
 

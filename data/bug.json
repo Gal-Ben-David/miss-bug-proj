@@ -1,5 +1,27 @@
 [
     {
+        "title": "new bug 2",
+        "description": "2222",
+        "severity": 8,
+        "labels": [
+            "critical",
+            " need-cr"
+        ],
+        "createdAt": 1729969202922,
+        "_id": "5WVj9"
+    },
+    {
+        "title": "new bug 1",
+        "description": 1111,
+        "severity": 7,
+        "labels": [
+            "need-cr",
+            "critical'"
+        ],
+        "createdAt": 1729969059399,
+        "_id": "Pgjln"
+    },
+    {
         "_id": "abc456",
         "title": "Bug id abc456",
         "description": "102",
@@ -7,7 +29,7 @@
         "createdAt": 1542107359455,
         "labels": [
             "critical",
-            "need-CR",
+            "need-cr",
             "dev-branch"
         ]
     },
@@ -29,7 +51,7 @@
         "severity": 6,
         "createdAt": 1729595174886,
         "labels": [
-            "need-CR",
+            "need-cr",
             "dev-branch"
         ]
     },
@@ -41,7 +63,7 @@
         "createdAt": 1542107359454,
         "labels": [
             "critical",
-            "need-CR"
+            "need-cr"
         ]
     }
 ]

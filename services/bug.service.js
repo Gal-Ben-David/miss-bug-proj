@@ -22,7 +22,7 @@ function query(filterBy, sortBy) {
                 bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
             }
             if (filterBy.label) {
-                bugs = bugs.filter(bug => bug.labels.includes(filterBy.label))
+                bugs = bugs.filter(bug => bug.labels.includes(filterBy.label.toLowerCase()))
             }
             if (sortBy.selector === 'bugTitle') {
                 bugs.sort((bug1, bug2) => bug1.title.toLowerCase().localeCompare(bug2.title.toLowerCase()) * sortBy.dir)

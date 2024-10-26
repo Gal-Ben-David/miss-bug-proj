@@ -30,11 +30,12 @@ app.get('/api/bug', (req, res) => {
 
     console.log('req.query:', req.query)
 
-    const { title = '', description = '', severity = '0', selector = '', dir = '1', pageIdx = '0' } = req.query
+    const { title = '', description = '', severity = '0', selector = '', dir = '1', pageIdx = '0', label = '' } = req.query
 
     const filterBy = {
         title,
         description,
+        label,
         severity: +severity,
         pageIdx: +pageIdx
     }
@@ -58,7 +59,7 @@ app.post('/api/bug', (req, res) => {
         title: req.body.title,
         description: req.body.description,
         severity: +req.body.severity,
-        labels: req.body.labels,
+        labels: req.body.labels.map(label => label.toLowerCase()),
         createdAt: Date.now()
     }
 
@@ -124,7 +125,7 @@ app.get('/api/bug/:bugId', (req, res) => {
 })
 
 //* REMOVE
-app.get('/api/bug/:bugId', (req, res) => {
+app.delete('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
     bugService.remove(bugId)
         .then(() => res.send(`Bug ${bugId} removed successfully!`))

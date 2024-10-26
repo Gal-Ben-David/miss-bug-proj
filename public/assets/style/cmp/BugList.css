@@ -18,11 +18,11 @@
     text-align: center;
     padding: 15px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    font-family: Mukta-Light;
+    font-family: 'Mukta-Light';
 }
 
 .bug-preview h4 {
-    font-family: Mukta-Regular;
+    font-family: 'Mukta-Regular';
 }
 
 .bug-img {

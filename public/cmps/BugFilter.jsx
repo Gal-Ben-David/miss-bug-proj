@@ -32,6 +32,12 @@ export function BugFilter({ filterBy, onSetFilter }) {
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
+    function handleLabelsChange({ target }) {
+        let { value } = target
+
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, label: value }))
+    }
+
     function onSubmitFilter(ev) {
         ev.preventDefault()
         onSetFilter(filterByToEdit)
@@ -40,7 +46,7 @@ export function BugFilter({ filterBy, onSetFilter }) {
     const { title, severity } = filterByToEdit
 
     return (
-        <section className="car-filter">
+        <section className="bug-filter">
             <h2>Filter Our Bugs</h2>
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt">Title</label>
@@ -48,6 +54,15 @@ export function BugFilter({ filterBy, onSetFilter }) {
 
                 <label htmlFor="severity">Severity</label>
                 <input value={severity || ''} onChange={handleChange} name="severity" type="number" id="severity" />
+
+                <div>
+                    <select onChange={handleLabelsChange}>
+                        <option value="">Select</option>
+                        <option value="critical">critical</option>
+                        <option value="need-CR">need-CR</option>
+                        <option value="dev-branch">dev-branch</option>
+                    </select>
+                </div>
 
                 <button>Submit</button>
             </form>
