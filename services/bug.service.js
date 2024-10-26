@@ -11,7 +11,7 @@ export const bugService = {
     save
 }
 
-function query(filterBy, sortBy) {
+function query(filterBy = {}, sortBy = {}) {
     return Promise.resolve(bugs)
         .then(bugs => {
             if (filterBy.title) {

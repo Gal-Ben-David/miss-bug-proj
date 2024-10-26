@@ -48,9 +48,9 @@ export function BugFilter({ filterBy, onSetFilter }) {
     return (
         <section className="bug-filter">
             <h2>Filter Our Bugs</h2>
-            <form onSubmit={onSubmitFilter}>
+            <form onSubmit={onSubmitFilter} className="filter-form">
                 <label htmlFor="txt">Title</label>
-                <input value={title} onChange={handleChange} name="title" type="text" id="txt" />
+                <input value={title} onChange={handleChange} name="title" type="text" id="txt" placeholder="Search by title" />
 
                 <label htmlFor="severity">Severity</label>
                 <input value={severity || ''} onChange={handleChange} name="severity" type="number" id="severity" />

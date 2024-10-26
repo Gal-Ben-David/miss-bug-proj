@@ -77,3 +77,7 @@ nav a:hover {
 .danger {
     background-color: rgb(216, 59, 59);
 }
+
+button {
+    cursor: pointer;
+}

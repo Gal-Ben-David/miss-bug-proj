@@ -2,6 +2,7 @@
 
 @import '../style/main.css';
 @import '../style/cmp/BugList.css';
+@import '../style/cmp/BugFilter.css';
 
 @font-face {
     font-family: Mukta-Light;
