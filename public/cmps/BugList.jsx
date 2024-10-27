@@ -1,6 +1,7 @@
 const { Link } = ReactRouterDOM
 
 import { BugPreview } from './BugPreview.jsx'
+import { BugDetails } from '../pages/BugDetails.jsx'
 
 export function BugList({ bugs, onRemoveBug, onEditBug }) {
 

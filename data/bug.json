@@ -1,5 +1,19 @@
 [
     {
+        "title": "new bug 3",
+        "description": "3333",
+        "severity": 11,
+        "labels": [
+            "critical"
+        ],
+        "createdAt": 1730053071289,
+        "_id": "6grZ4",
+        "creator": {
+            "_id": "P8rvt",
+            "fullname": "Gal ben Dabvid"
+        }
+    },
+    {
         "title": "new bug 2",
         "description": "2222",
         "severity": 8,
