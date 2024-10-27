@@ -50,7 +50,7 @@ function getById(bugId) {
 
 function remove(bugId, loggedInUser) {
     const bugIdx = bugs.findIndex(bug => bug._id === bugId)
-    if (bugIdx === -1) return Promise.reject('Cannot find bug', bugId)
+    if (bugIdx === -1) return Promise.reject(`Cannot find bug ${bugId}`)
 
     const bug = bugs[bugIdx]
     if (!loggedInUser.isAdmin &&

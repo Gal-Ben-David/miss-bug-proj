@@ -14,7 +14,10 @@ export function AppHeader() {
 
     function onLogout() {
         userService.logout()
-            .then(() => onSetUser(null))
+            .then(() => {
+                onSetUser(null)
+                navigate("/bug")
+            })
             .catch(err => showErrorMsg('OOPs try again'))
     }
 
@@ -32,6 +35,7 @@ export function AppHeader() {
             <nav>
                 <NavLink to="/">Home</NavLink> |<NavLink to="/bug">Bugs</NavLink> |
                 <NavLink to="/about">About</NavLink>
+                {user && user.isAdmin && <NavLink to="/users">User List</NavLink>}
             </nav>
 
             {user ? (

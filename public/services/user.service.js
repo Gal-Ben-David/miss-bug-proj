@@ -8,7 +8,15 @@ export const userService = {
     getLoggedinUser,
 
     getById,
-    getEmptyCredentials
+    getEmptyCredentials,
+    remove,
+    query
+}
+
+function query() {
+    return axios.get(BASE_URL)
+        .then(res => res.data)
+
 }
 
 function login({ username, password }) {
@@ -42,6 +50,11 @@ function getLoggedinUser() {
 
 function getById(userId) {
     return axios.get(BASE_URL + userId)
+        .then(res => res.data)
+}
+
+function remove(userId) {
+    return axios.delete(BASE_URL + userId)
         .then(res => res.data)
 }
 

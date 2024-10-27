@@ -203,4 +203,18 @@ app.post('/api/auth/logout', (req, res) => {
     res.send('logged-out!')
 })
 
+//* REMOVE-USER
+app.delete('/api/user/:userId', (req, res) => {
+    const loggedInUser = userService.validateToken(req.cookies.loginToken)
+    if (!loggedInUser.isAdmin) return res.status(401).send('Cannot delete user')
+
+    const { userId } = req.params
+    userService.remove(userId, loggedInUser)
+        .then(() => res.send(`User ${userId} removed successfully!`))
+        .catch(err => {
+            loggerService.error('Cannot remove user', err)
+            res.status(500).send('Cannot remove user')
+        })
+})
+
 app.listen(3030, () => console.log(`Server listening on port http://127.0.0.1:3030/`))

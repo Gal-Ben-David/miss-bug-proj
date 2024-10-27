@@ -4,8 +4,7 @@
     "username": "puki",
     "fullname": "Puki Ja",
     "password": "puki",
-    "score": 100,
-    "isAdmin": true
+    "score": 100
   },
   {
     "_id": "u102",
@@ -27,12 +26,6 @@
     "_id": "XtFoM"
   },
   {
-    "username": "aaa",
-    "password": "aaa",
-    "fullname": "aaa",
-    "_id": "6RyQp"
-  },
-  {
     "username": "gugu",
     "password": "gugu",
     "fullname": "Gugu Ga",
@@ -45,18 +38,6 @@
     "_id": "tUZPy"
   },
   {
-    "username": "bob",
-    "password": "bob",
-    "fullname": "bob",
-    "_id": "GOtHH"
-  },
-  {
-    "username": "rr",
-    "password": "rr",
-    "fullname": "rr",
-    "_id": "2F1Sz"
-  },
-  {
     "username": "muki-new",
     "fullname": "Muki Ba-New",
     "password": "secret2222",
@@ -65,7 +46,15 @@
   {
     "username": "Gal",
     "password": "Gal",
-    "fullname": "Gal ben Dabvid",
-    "_id": "P8rvt"
+    "fullname": "Gal Ben David",
+    "_id": "P8rvt",
+    "isAdmin": true
+  },
+  {
+    "username": "admin",
+    "password": "admin",
+    "fullname": "admin",
+    "_id": "admin11",
+    "isAdmin": true
   }
 ]

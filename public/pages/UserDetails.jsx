@@ -29,13 +29,12 @@ export function UserDetails() {
         user && <div>
             <h3>User Details 👤</h3>
             <h4>{user.fullname}</h4>
+            <h5>id: {user._id}</h5>
+            <h5>{bugs ? 'User Bugs' : 'No Bugs'}</h5>
             <pre>
                 {bugs && bugs.length !== 0 &&
                     <BugList bugs={bugs} />
                 }
-                {/* // <ul>
-                    //     {bugs.map(bug => <li>{bug.title}</li>)}
-                    // </ul>} */}
             </pre>
             <Link to="/bug">Back</Link>
         </div>)

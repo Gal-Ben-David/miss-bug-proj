@@ -10,7 +10,8 @@
         "_id": "6grZ4",
         "creator": {
             "_id": "P8rvt",
-            "fullname": "Gal ben Dabvid"
+            "fullname": "Gal ben David",
+            "isAdmin": true
         }
     },
     {
@@ -24,23 +25,8 @@
         "createdAt": 1729969202922,
         "_id": "5WVj9",
         "creator": {
-            "_id": "u107",
-            "fullname": "Dudi Ja"
-        }
-    },
-    {
-        "title": "new bug 1",
-        "description": 1111,
-        "severity": 7,
-        "labels": [
-            "need-cr",
-            "critical'"
-        ],
-        "createdAt": 1729969059399,
-        "_id": "Pgjln",
-        "creator": {
-            "_id": "u106",
-            "fullname": "Mushi Ja"
+            "fullname": "Gugu Ga",
+            "_id": "qLEdY"
         }
     },
     {

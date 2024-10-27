@@ -35,8 +35,14 @@ function getById(userId) {
     return Promise.resolve(user)
 }
 
-function remove(userId) {
-    users = users.filter(user => user._id !== userId)
+function remove(userId, loggedInUser) {
+    const userIdx = users.findIndex(user => user._id === userId)
+    if (userIdx === -1) return Promise.reject(`Cannot find user ${userId}`)
+
+    if (!loggedInUser.isAdmin) {
+        return Promise.reject('Cannot remove user')
+    }
+    users.splice(userIdx, 1)
     return _saveUsersToFile()
 }
 
