@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
 import { pdfService } from './services/pdf.service.js'
+import { userService } from './services/user.service.js'
 
 const app = express()
 app.use(express.static('public'))
@@ -55,6 +56,9 @@ app.get('/api/bug', (req, res) => {
 
 //* ADD
 app.post('/api/bug', (req, res) => {
+    const loggedInUser = userService.validateToken(req.cookies.loginToken)
+    if (!loggedInUser) return res.status(401).send('Cannot add bug')
+
     const bugToSave = {
         title: req.body.title,
         description: req.body.description,
@@ -65,7 +69,7 @@ app.post('/api/bug', (req, res) => {
 
     console.log('Saving bug:', bugToSave)
 
-    bugService.save(bugToSave)
+    bugService.save(bugToSave, loggedInUser)
         .then(savedBug => res.send(savedBug))
         .catch(err => {
             loggerService.error('Cannot save bug', err)
@@ -75,11 +79,15 @@ app.post('/api/bug', (req, res) => {
 
 // UPDATE 
 app.put('/api/bug', (req, res) => {
+    const loggedInUser = userService.validateToken(req.cookies.loginToken)
+    if (!loggedInUser) return res.status(401).send('Cannot update bug')
+
     const bugToSave = {
         severity: +req.body.severity,
-        _id: req.body._id
+        _id: req.body._id,
+        creator: req.body.creator
     }
-    bugService.save(bugToSave)
+    bugService.save(bugToSave, loggedInUser)
         .then(bug => res.send(bug))
         .catch((err) => {
             loggerService.error('Cannot save bug', err)
@@ -126,13 +134,52 @@ app.get('/api/bug/:bugId', (req, res) => {
 
 //* REMOVE
 app.delete('/api/bug/:bugId', (req, res) => {
+    const loggedInUser = userService.validateToken(req.cookies.loginToken)
+    if (!loggedInUser) return res.status(401).send('Cannot delete bug')
+
     const { bugId } = req.params
-    bugService.remove(bugId)
+    bugService.remove(bugId, loggedInUser)
         .then(() => res.send(`Bug ${bugId} removed successfully!`))
         .catch(err => {
             loggerService.error('Cannot remove bug', err)
             res.status(500).send('Cannot remove bug')
         })
+})
+
+// Auth API
+app.post('/api/auth/login', (req, res) => {
+    const credentials = req.body
+
+    userService.checkLogin(credentials)
+        .then(user => {
+            if (user) {
+                const loginToken = userService.getLoginToken(user)
+                res.cookie('loginToken', loginToken)
+                res.send(user)
+            } else {
+                res.status(401).send('Invalid Credentials')
+            }
+        })
+})
+
+app.post('/api/auth/signup', (req, res) => {
+    const credentials = req.body
+
+    userService.save(credentials)
+        .then(user => {
+            if (user) {
+                const loginToken = userService.getLoginToken(user)
+                res.cookie('loginToken', loginToken)
+                res.send(user)
+            } else {
+                res.status(400).send('Cannot signup')
+            }
+        })
+})
+
+app.post('/api/auth/logout', (req, res) => {
+    res.clearCookie('loginToken')
+    res.send('logged-out!')
 })
 
 app.listen(3030, () => console.log(`Server listening on port http://127.0.0.1:3030/`))

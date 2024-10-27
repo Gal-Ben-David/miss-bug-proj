@@ -8,7 +8,11 @@
             " need-cr"
         ],
         "createdAt": 1729969202922,
-        "_id": "5WVj9"
+        "_id": "5WVj9",
+        "creator": {
+            "_id": "u107",
+            "fullname": "Dudi Ja"
+        }
     },
     {
         "title": "new bug 1",
@@ -19,7 +23,11 @@
             "critical'"
         ],
         "createdAt": 1729969059399,
-        "_id": "Pgjln"
+        "_id": "Pgjln",
+        "creator": {
+            "_id": "u106",
+            "fullname": "Mushi Ja"
+        }
     },
     {
         "_id": "abc456",
@@ -31,7 +39,11 @@
             "critical",
             "need-cr",
             "dev-branch"
-        ]
+        ],
+        "creator": {
+            "_id": "u104",
+            "fullname": "Shuki Ja"
+        }
     },
     {
         "_id": "abc789",
@@ -42,7 +54,11 @@
         "labels": [
             "critical",
             "dev-branch"
-        ]
+        ],
+        "creator": {
+            "_id": "u101",
+            "fullname": "Puki Ja"
+        }
     },
     {
         "_id": "abc357",
@@ -53,7 +69,11 @@
         "labels": [
             "need-cr",
             "dev-branch"
-        ]
+        ],
+        "creator": {
+            "_id": "u103",
+            "fullname": "Buli Ja"
+        }
     },
     {
         "_id": "abc246",
@@ -64,6 +84,10 @@
         "labels": [
             "critical",
             "need-cr"
-        ]
+        ],
+        "creator": {
+            "_id": "u102",
+            "fullname": "Muki Ja"
+        }
     }
 ]
