@@ -61,5 +61,11 @@
     "fullname": "Muki Ba-New",
     "password": "secret2222",
     "_id": "88bao"
+  },
+  {
+    "username": "Gal",
+    "password": "Gal",
+    "fullname": "Gal ben Dabvid",
+    "_id": "P8rvt"
   }
 ]
