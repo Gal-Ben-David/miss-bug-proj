@@ -23,8 +23,8 @@ export function UserIndex() {
     function onRemoveUser(userId) {
         bugService.query()
             .then(bugs => {
-                const filteredBugs = bugs.filter(bug => bug.creator._id === userId)
-                if (filteredBugs.length > 0) {
+                const hasBugs = bugs.some(bug => bug.creator._id === userId)
+                if (hasBugs) {
                     console.log('This user has bugs and cannot be removed')
                     showErrorMsg('This user has bugs and cannot be removed')
                     return
